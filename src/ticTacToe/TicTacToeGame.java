@@ -3,8 +3,8 @@ package ticTacToe;
 public class TicTacToeGame {
 	
 	char[] gamearr = new char[10];
-	
-	public void emptyArr(){
+	//method for clearing TicTacToe game board
+	public void clearGameBoard(){
 		
 		int i = 1; 
 		while(i < 10) {
@@ -15,6 +15,6 @@ public class TicTacToeGame {
 	public static void main(String[] args) {
 		
 		TicTacToeGame t = new TicTacToeGame();
-		t.emptyArr();
+		t.clearGameBoard();
 	}
 }

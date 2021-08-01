@@ -36,7 +36,9 @@ public class TicTacToeGame {
 			System.out.print(gamearr[i] + " ");
 			//print value in new line when position reaches 3 & 6
 			if(i % 3 == 0) {
-				System.out.print("\n---------\n");
+				if(i != 9) {
+					System.out.print("\n---------\n");
+				}
 			}
 			else {
 				System.out.print("|");
@@ -48,15 +50,23 @@ public class TicTacToeGame {
 		
 		System.out.print("Select a position from 1 to 9 : ");
 		int position = sc.nextInt();
-		if(gamearr[position] == ' ') {
-			
+		if(checkFreeSpace(position)) {
 			gamearr[position] = letter;
 		}
 		else {
 			System.out.println("Selected position is not free : ");
 		}
 	}
-	
+	//method to check free space
+	public boolean checkFreeSpace(int position ) {
+		
+		if(gamearr[position] == ' ') {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	public static void main(String[] args){
 		
 		TicTacToeGame game = new TicTacToeGame();

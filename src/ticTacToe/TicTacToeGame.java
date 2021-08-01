@@ -8,7 +8,7 @@ public class TicTacToeGame {
 	char[] gamearr = new char[10];
 	
 	//method for clearing TicTacToe game board
-	public void clearGameBoard(){
+	public void clearGameBoard() {
 		
 		int i = 1; 
 		while(i < 10) {
@@ -17,36 +17,53 @@ public class TicTacToeGame {
 		}
 	}
 	//method for reading a letter 
-	public char chooseLetter(){
+	public char chooseLetter() {
 		
 		System.out.print("Choose your letter X or O : ");
 		char letter = sc.next().charAt(0);
 		//if input not equal to X or O then returns '' 
-		if(letter != 'X' && letter != 'O'){
+		if(letter != 'X' && letter != 'O') {
 			System.out.println("Invalid Input");
 			letter = ' ';
 		}
 		return letter;
 	}
-	//method for print TicTocToeBoard
-	public void showBoard(){
+	//method to print TicTocToeBoard
+	public void showBoard() {
 		
 		System.out.println("Your TicTacToe board : ");
 		for(int i=1; i<10; i++) {
 			System.out.print(gamearr[i] + " ");
 			//print value in new line when position reaches 3 & 6
-			if(i == 3 || i == 6){
-				System.out.println("\n");
+			if(i % 3 == 0) {
+				System.out.print("\n---------\n");
+			}
+			else {
+				System.out.print("|");
 			}
 		}
 	}
-	public static void main(String[] args) {
+	//method to move to a desired location
+	public void desiredMove(char letter) {
+		
+		System.out.print("Select a position from 1 to 9 : ");
+		int position = sc.nextInt();
+		if(gamearr[position] == ' ') {
+			
+			gamearr[position] = letter;
+		}
+		else {
+			System.out.println("Selected position is not free : ");
+		}
+	}
+	
+	public static void main(String[] args){
 		
 		TicTacToeGame game = new TicTacToeGame();
 		game.clearGameBoard();
 		char letter = game.chooseLetter();
 		System.out.println("Player Choose the letter : " + letter);
+		game.desiredMove(letter);
 		game.showBoard();
-		
 	}
 }

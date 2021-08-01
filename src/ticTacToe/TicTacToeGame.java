@@ -1,6 +1,7 @@
 package ticTacToe;
 
 import java.util.Scanner;
+import java.lang.Math;
 
 public class TicTacToeGame {
 	
@@ -67,13 +68,29 @@ public class TicTacToeGame {
 			return false;
 		}
 	}
+	//toss to check who plays first
+	public int toss() {
+		
+		return (int)(Math.floor (Math.random() * 10) % 2);
+		 
+	}
 	public static void main(String[] args){
 		
+		Scanner sc = new Scanner(System.in);
 		TicTacToeGame game = new TicTacToeGame();
 		game.clearGameBoard();
 		char letter = game.chooseLetter();
 		System.out.println("Player Choose the letter : " + letter);
 		game.desiredMove(letter);
 		game.showBoard();
+		System.out.print("\nChoose Head(1) or Tail(0) : ");
+		int tossOption = sc.nextInt();
+		//comparing value user input and toss value
+		if(tossOption == game.toss()) {
+			System.out.println("Player won the toss");
+		}
+		else {
+			System.out.println("Computer won the toss");
+		}
 	}
 }

@@ -141,49 +141,54 @@ public class TicTacToeGame {
 	}
 	public static void main(String[] args){
 		
-		char computerLetter,playerLetter,checkStatus,player1,player2,computer;
+		char computerLetter, playerLetter, checkStatus, player1, player2, playAgain;
 		Scanner sc = new Scanner(System.in);
 		TicTacToeGame game = new TicTacToeGame();
-		game.clearGameBoard();
-		playerLetter = game.chooseLetter();
-		System.out.println("Player Choose the letter : " + playerLetter);
-		computerLetter = (playerLetter == 'X') ? 'O':'X';
-		System.out.print("\nChoose Head(1) or Tail(0) : ");
-		int tossOption = sc.nextInt();
-		//comparing value user input and toss value
-		if(tossOption == game.toss()) {
-			System.out.println("Player won the toss");
-			player1 = playerLetter;
-			player2 = computerLetter;
-		}
-		else {
-			System.out.println("Computer won the toss");
-			player1 = computerLetter;
-			player2 =  playerLetter;
-		}
-		do{
-			game.showBoard();
-			game.playGame(player1,computerLetter);
-			game.showBoard();
-			checkStatus = game.checkWinner();
-			if(checkStatus == 'X' || checkStatus == 'O') {
-				break;
+		do {
+			game.clearGameBoard();
+			playerLetter = game.chooseLetter();
+			System.out.println("Player Choose the letter : " + playerLetter);
+			computerLetter = (playerLetter == 'X') ? 'O':'X';
+			System.out.print("\nChoose Head(1) or Tail(0) : ");
+			int tossOption = sc.nextInt();
+			//comparing value user input and toss value
+			if(tossOption == game.toss()) {
+				System.out.println("Player won the toss");
+				player1 = playerLetter;
+				player2 = computerLetter;
 			}
-			game.playGame(player2,computerLetter);
+			else {
+				System.out.println("Computer won the toss");
+				player1 = computerLetter;
+				player2 =  playerLetter;
+			}
+			do{
+				game.showBoard();
+				game.playGame(player1,computerLetter);
+				game.showBoard();
+				checkStatus = game.checkWinner();
+				if(checkStatus == 'X' || checkStatus == 'O') {
+					break;
+				}
+				game.playGame(player2,computerLetter);
+				game.showBoard();
+				checkStatus = game.checkWinner();
+			}while(checkStatus == 'C');
+			System.out.println("Final game board");
 			game.showBoard();
-			checkStatus = game.checkWinner();
-		}while(checkStatus == 'C');
-		System.out.println("Final game board");
-		game.showBoard();
-		if(checkStatus == playerLetter) {
-			System.out.println("\nPlayer Wins");
-		}
-		else if(checkStatus == computerLetter) {
-			System.out.println("\nComputer Wins");
-		}
-		else {
-			System.out.println("\n Both are in Tie");
-		}
+			if(checkStatus == playerLetter) {
+				System.out.println("\nPlayer Wins");
+			}
+			else if(checkStatus == computerLetter) {
+				System.out.println("\nComputer Wins");
+			}
+			else {
+				System.out.println("\n Both are in Tie");
+			}
+			System.out.print("\nDo you want to continue the game? Press Y :");
+			playAgain = sc.next().charAt(0);
+		}while(playAgain == 'Y');
+		System.out.println("\nGame over!");
 		sc.close();
 	}
 }
